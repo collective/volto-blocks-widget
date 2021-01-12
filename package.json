@@ -1,0 +1,15 @@
+{
+  "name": "volto-blocks-widget",
+  "version": "0.1.0",
+  "description": "Volto addon to use blocks inside field",
+  "main": "src/index.js",
+  "repository": "https://github.com/collective/volto-blocks-widget.git",
+  "author": "RedTurtle",
+  "license": "MIT",
+  "devDependencies": {
+    "release-it": "*"
+  },
+  "scripts": {
+    "release": "release-it"
+  }
+}
