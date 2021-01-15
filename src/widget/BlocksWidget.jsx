@@ -48,6 +48,8 @@ const BlocksWidget = (props) => {
               visual={true}
               hideActions
               onChangeFormData={onChangeBlocks}
+              allowedBlocks={settings['volto-blocks-widget']?.allowedBlocks}
+              showRestricted={settings['volto-blocks-widget']?.showRestricted}
             />
           </div>
         </FormFieldWrapper>
