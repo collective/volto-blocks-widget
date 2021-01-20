@@ -1,22 +1,21 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Portal } from 'react-portal';
-//import { defineMessages, useIntl } from 'react-intl';
 import { v4 as uuid } from 'uuid';
 import { isEmpty } from 'lodash';
 import { Form as UIForm } from 'semantic-ui-react';
 import { FormFieldWrapper, Form, Sidebar } from '@plone/volto/components';
 import { settings } from '~/config';
+import { setBlockWidgetSelected } from '../actions';
 import './blocks_widget.css';
-//const messages = defineMessages({
-// footerItemsHeader: {
-//   id: 'editablefooter-items-header',
-//   defaultMessage: 'Footer columns',
-// },
-//});
 
 const BlocksWidget = (props) => {
+  const dispatch = useDispatch();
   const { value, id, onChange, required } = props;
-
+  const currentFieldSelected = useSelector(
+    (state) => state.blocksWidgetSelected?.value,
+  );
+  const widgetRef = useRef();
   //const intl = useIntl();
   const defaultBlockId = uuid();
   if (!value.blocks_layout || isEmpty(value.blocks_layout.items)) {
@@ -39,9 +38,26 @@ const BlocksWidget = (props) => {
     });
   };
 
+  const onFocusWidget = () => {
+    if (currentFieldSelected !== id) {
+      dispatch(setBlockWidgetSelected(id));
+    }
+  };
+
+  useEffect(() => {
+    if (widgetRef) {
+      const currentWidget = widgetRef.current;
+      currentWidget.addEventListener('click', onFocusWidget);
+
+      return () => {
+        currentWidget.removeEventListener('click', onFocusWidget);
+      };
+    }
+  }, [widgetRef]);
+
   return (
     <>
-      <div className="blocks-widget">
+      <div className="blocks-widget" ref={widgetRef}>
         <UIForm.Field inline id={id}>
           <FormFieldWrapper {...props}>
             <div className="blocks-widget-container">
@@ -53,13 +69,15 @@ const BlocksWidget = (props) => {
                 onChangeFormData={onChangeBlocks}
                 allowedBlocks={settings['volto-blocks-widget']?.allowedBlocks}
                 showRestricted={settings['volto-blocks-widget']?.showRestricted}
+                isFormSelected={currentFieldSelected === id}
               />
             </div>
           </FormFieldWrapper>
         </UIForm.Field>
       </div>
+
       <Portal node={document.getElementById('sidebar')}>
-        <Sidebar />
+        {currentFieldSelected === id && <Sidebar />}
       </Portal>
     </>
   );
