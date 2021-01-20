@@ -1,3 +1,7 @@
 .blocks-widget-container {
   padding: 0 2em;
 }
+
+body.cms-ui.has-toolbar.has-sidebar .blocks-widget-container > .ui.container {
+  width: unset !important;
+}
