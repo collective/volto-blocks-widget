@@ -5,3 +5,26 @@
 body.cms-ui.has-toolbar.has-sidebar .blocks-widget-container > .ui.container {
   width: unset !important;
 }
+
+body.cms-ui
+  .blocks-widget-container
+  .toolbar-inner
+  .ui.input
+  input[type='text'] {
+  height: unset;
+  margin-top: 0 !important;
+  min-width: 300px;
+}
+
+body.cms-ui
+  .blocks-widget-container
+  .toolbar-inner
+  .ui.input
+  input[type='text']::placeholder {
+  font-size: 0.64rem;
+}
+
+.cms-ui .blocks-widget-container .block.table .toolbar {
+  margin-right: 0;
+  z-index: 2;
+}
