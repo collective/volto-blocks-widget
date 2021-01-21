@@ -6,6 +6,10 @@ body.cms-ui.has-toolbar.has-sidebar .blocks-widget-container > .ui.container {
   width: unset !important;
 }
 
+body.cms-ui .blocks-widget-container .toolbar-inner .ui.input {
+  flex: 1 1 auto;
+}
+
 body.cms-ui
   .blocks-widget-container
   .toolbar-inner
@@ -13,7 +17,6 @@ body.cms-ui
   input[type='text'] {
   height: unset;
   margin-top: 0 !important;
-  min-width: 300px;
 }
 
 body.cms-ui
@@ -22,6 +25,10 @@ body.cms-ui
   .ui.input
   input[type='text']::placeholder {
   font-size: 0.64rem;
+}
+
+body.cms-ui .blocks-widget-container .block.video center {
+  width: 100%;
 }
 
 .cms-ui .blocks-widget-container .block.table .toolbar {

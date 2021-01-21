@@ -8,7 +8,7 @@ export default (config) => {
   };
 
   config.settings['volto-blocks-widget'] = {
-    allowedBlocks: ['text', 'image', 'video', 'html', 'table'],
+    allowedBlocks: ['text', 'image', 'video', 'html', 'table', 'maps'],
     showRestricted: false,
   };
 
