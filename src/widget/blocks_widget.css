@@ -35,3 +35,8 @@ body.cms-ui .blocks-widget-container .block.video center {
   margin-right: 0;
   z-index: 2;
 }
+
+.cms-ui .blocks-widget .wrapper:not(.drag) {
+  align-items: flex-start;
+  padding-top: 1rem;
+}
