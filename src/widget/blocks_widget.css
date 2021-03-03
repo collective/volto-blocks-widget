@@ -36,7 +36,7 @@ body.cms-ui .blocks-widget-container .block.video center {
   z-index: 2;
 }
 
-.cms-ui .blocks-widget .wrapper:not(.drag) {
+.cms-ui .blocks-widget .inline.field .wrapper:not(.drag) {
   align-items: flex-start;
   padding-top: 1rem;
 }
