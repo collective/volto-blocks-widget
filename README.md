@@ -8,6 +8,8 @@ Created with [voltocli](https://github.com/nzambello/voltocli).
 
 ## Usage
 
+> If you're using Volto < 12, then use [v1.0.2](https://github.com/collective/volto-blocks-widget/tree/v1.0.2)
+
 This is a widget for fields that have the widget set to 'blocks'.
 
 Default allowed blocks are:
