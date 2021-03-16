@@ -5,13 +5,14 @@ import { v4 as uuid } from 'uuid';
 import { isEmpty } from 'lodash';
 import { Form as UIForm } from 'semantic-ui-react';
 import { FormFieldWrapper, Form, Sidebar } from '@plone/volto/components';
-import { settings } from '~/config';
+// import { settings } from '~/config';
+import config from '@plone/volto/registry';
 import { setBlockWidgetSelected } from '../actions';
 import './blocks_widget.css';
 
 const BlocksWidget = (props) => {
   const dispatch = useDispatch();
-  const { value={}, id, onChange, required } = props;
+  const { value = {}, id, onChange, required } = props;
   const currentFieldSelected = useSelector(
     (state) => state.blocksWidgetSelected?.value,
   );
@@ -26,7 +27,7 @@ const BlocksWidget = (props) => {
   if (!value.blocks || isEmpty(value.blocks)) {
     value.blocks = {
       [defaultBlockId]: {
-        '@type': settings.defaultBlockType,
+        '@type': config.settings.defaultBlockType,
       },
     };
   }
@@ -67,8 +68,12 @@ const BlocksWidget = (props) => {
                 visual={true}
                 hideActions
                 onChangeFormData={onChangeBlocks}
-                allowedBlocks={settings['volto-blocks-widget']?.allowedBlocks}
-                showRestricted={settings['volto-blocks-widget']?.showRestricted}
+                allowedBlocks={
+                  config.settings['volto-blocks-widget']?.allowedBlocks
+                }
+                showRestricted={
+                  config.settings['volto-blocks-widget']?.showRestricted
+                }
                 isFormSelected={currentFieldSelected === id}
               />
             </div>
