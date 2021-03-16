@@ -11,7 +11,7 @@ import './blocks_widget.css';
 
 const BlocksWidget = (props) => {
   const dispatch = useDispatch();
-  const { value, id, onChange, required } = props;
+  const { value={}, id, onChange, required } = props;
   const currentFieldSelected = useSelector(
     (state) => state.blocksWidgetSelected?.value,
   );
