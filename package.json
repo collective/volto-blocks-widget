@@ -1,6 +1,6 @@
 {
   "name": "volto-blocks-widget",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "description": "Volto addon to use blocks inside field",
   "main": "src/index.js",
   "repository": "https://github.com/collective/volto-blocks-widget.git",
