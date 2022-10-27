@@ -10,7 +10,7 @@ Created with [voltocli](https://github.com/nzambello/voltocli).
 
 > If you are using Volto < 16, then use [v2.1.0](https://github.com/collective/volto-blocks-widget/tree/v2.1.0)
 >
-> If you're using Volto < 12, then use [v1.0.3](https://github.com/collective/volto-blocks-widget/tree/v1.0.3)
+> If you are using Volto < 12, then use [v1.0.3](https://github.com/collective/volto-blocks-widget/tree/v1.0.3)
 
 This is a widget for fields that have the widget set to 'blocks'.
 
