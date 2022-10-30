@@ -8,7 +8,7 @@
   "license": "MIT",
   "devDependencies": {
     "@plone/scripts": "^2.0.0",
-    "release-it": "*"
+    "release-it": "^14.10.1"
   },
   "peerDependencies": {
     "@plone/volto": ">=16.0.0-alpha.38"
