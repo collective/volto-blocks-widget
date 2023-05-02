@@ -48,6 +48,10 @@ const BlocksWidget = (props) => {
     }
   };
 
+  const onBlurWidget = () => {
+    props.onBlur(id, value);
+  };
+
   useEffect(() => {
     if (widgetRef) {
       const currentWidget = widgetRef.current;
@@ -61,7 +65,7 @@ const BlocksWidget = (props) => {
 
   return (
     <>
-      <div className="blocks-widget" ref={widgetRef}>
+      <div className="blocks-widget" ref={widgetRef} onBlur={onBlurWidget}>
         <UIForm.Field inline id={id}>
           <FormFieldWrapper {...props}>
             <div className="blocks-widget-container">
