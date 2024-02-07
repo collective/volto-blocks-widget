@@ -63,6 +63,8 @@ const BlocksWidget = (props) => {
     }
   }, [widgetRef]);
 
+  console.log(props);
+
   return (
     <>
       <div className="blocks-widget" ref={widgetRef} onBlur={onBlurWidget}>
@@ -76,9 +78,11 @@ const BlocksWidget = (props) => {
                 hideActions
                 onChangeFormData={onChangeBlocks}
                 allowedBlocks={
+                  props.allowedBlocks ??
                   config.settings['volto-blocks-widget']?.allowedBlocks
                 }
                 showRestricted={
+                  props.showRestricted ??
                   config.settings['volto-blocks-widget']?.showRestricted
                 }
                 isFormSelected={currentFieldSelected === id}
