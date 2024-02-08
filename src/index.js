@@ -1,5 +1,11 @@
 import BlocksWidget from './widget/BlocksWidget';
 import { blocksWidgetSelectedReducer } from './reducers';
+import RenderBlocks from './components/RenderBlocks';
+import { RichTextRender, richTextHasContent } from './components/RichTextRender';
+
+export {
+  RenderBlocks, RichTextRender, richTextHasContent
+}
 
 export default (config) => {
   config.widgets.widget = {

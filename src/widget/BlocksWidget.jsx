@@ -62,9 +62,6 @@ const BlocksWidget = (props) => {
       };
     }
   }, [widgetRef]);
-
-  console.log(props);
-
   return (
     <>
       <div className="blocks-widget" ref={widgetRef} onBlur={onBlurWidget}>
