@@ -4,7 +4,7 @@ import { Portal } from 'react-portal';
 import { v4 as uuid } from 'uuid';
 import { isEmpty } from 'lodash';
 import { Form as UIForm } from 'semantic-ui-react';
-
+import { createPortal } from 'react-dom';
 import { FormFieldWrapper, Form, Sidebar } from '@plone/volto/components';
 import { setBlockWidgetSelected } from '../actions';
 import config from '@plone/volto/registry';
@@ -90,9 +90,15 @@ const BlocksWidget = (props) => {
         </UIForm.Field>
       </div>
 
-      <Portal node={document.getElementById('sidebar')}>
-        {currentFieldSelected === id && <Sidebar />}
-      </Portal>
+      {createPortal(
+        <div
+          style={{ display: currentFieldSelected === id ? 'block' : 'none' }}
+        >
+          {' '}
+          <Sidebar />
+        </div>,
+        document.getElementById('sidebar'),
+      )}
     </>
   );
 };
