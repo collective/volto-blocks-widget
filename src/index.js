@@ -14,8 +14,10 @@ export default (config) => {
     blocks: BlocksWidget,
   };
 
+  const textBlock = config.settings?.slate ? 'slate' : 'text';
+
   config.settings['volto-blocks-widget'] = {
-    allowedBlocks: ['text', 'image', 'video', 'html', 'table', 'maps'],
+    allowedBlocks: [textBlock, 'image', 'video', 'html', 'table', 'maps'],
     showRestricted: false,
   };
 

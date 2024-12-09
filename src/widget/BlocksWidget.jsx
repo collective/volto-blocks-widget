@@ -19,6 +19,7 @@ const BlocksWidget = (props) => {
   const currentFieldSelected = useSelector(
     (state) => state.blocksWidgetSelected?.value,
   );
+
   const widgetRef = useRef();
   //const intl = useIntl();
   const defaultBlockId = uuid();
