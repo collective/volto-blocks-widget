@@ -6,8 +6,8 @@ import { defineMessages, useIntl } from 'react-intl';
 import {
   getBlocksFieldname,
   getBlocksLayoutFieldname,
-} from '@plone/volto/helpers/Blocks/Blocks';
-import { getBaseUrl } from '@plone/volto/helpers/Url/Url';
+  getBaseUrl,
+} from '@plone/volto/helpers';
 import config from '@plone/volto/registry';
 
 const messages = defineMessages({

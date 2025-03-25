@@ -2,12 +2,12 @@
 CUSTOMIZATIONS:
 - added e.preventDefault and e.stopPropagation on button click
 */
-import Icon from '@plone/volto/components/theme/Icon/Icon';
+import { Icon } from '@plone/volto/components';
 import { Button } from 'semantic-ui-react';
 import { defineMessages, useIntl } from 'react-intl';
 import NewBlockAddButton from './NewBlockAddButton';
 import cx from 'classnames';
-import { isInteractiveElement } from '@plone/volto/helpers/Utils/Utils';
+import { isInteractiveElement } from '@plone/volto/helpers';
 
 import clearSVG from '@plone/volto/icons/clear.svg';
 
