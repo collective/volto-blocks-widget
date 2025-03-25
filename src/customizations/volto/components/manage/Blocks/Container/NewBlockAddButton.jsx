@@ -57,11 +57,13 @@ const NewBlockAddButton = (props) => {
           onClick={(e) => {
             e.preventDefault();
             e.stopPropagation();
-            setOpenMenu(true);}}
+            setOpenMenu(true);
+          }}
           className="add-block-button"
           aria-label={intl.formatMessage(messages.addBlock, {
             index,
           })}
+          type="button"
         >
           <Icon name={addSVG} className="circled" size="24px" />
         </Button>

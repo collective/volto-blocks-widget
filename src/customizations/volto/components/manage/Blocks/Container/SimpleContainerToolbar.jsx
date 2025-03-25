@@ -35,7 +35,9 @@ const SimpleContainerToolbar = (props) => {
           onClick={(e) => {
             e.preventDefault();
             e.stopPropagation();
-            onAddNewBlock();}}
+            onAddNewBlock();
+          }}
+          type="button"
         >
           <Icon name={addSVG} size="24px" />
         </Button>
@@ -51,6 +53,7 @@ const SimpleContainerToolbar = (props) => {
             setSelectedBlock();
             props.setSidebarTab(1);
           }}
+          type="button"
         >
           <Icon name={configSVG} size="24px" />
         </Button>

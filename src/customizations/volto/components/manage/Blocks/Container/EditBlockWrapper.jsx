@@ -70,6 +70,7 @@ const EditBlockWrapper = (props) => {
               onResetBlock(block, {});
             }}
             className="remove-block-button"
+            type="button"
           >
             <Icon name={clearSVG} className="circled" size="24px" />
           </Button>
@@ -86,6 +87,7 @@ const EditBlockWrapper = (props) => {
             aria-label={intl.formatMessage(messages.delete, {
               index,
             })}
+            type="button"
           >
             <Icon
               name={clearSVG}
