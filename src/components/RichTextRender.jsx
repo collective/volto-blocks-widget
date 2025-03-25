@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { values } from 'lodash';
-import { flattenHTMLToAppURL } from '@plone/volto/helpers/Url/Url';
-import { hasBlocksData } from '@plone/volto/helpers/Blocks/Blocks';
-import RenderBlocks from './RenderBlocks';
+import { flattenHTMLToAppURL } from '@plone/volto/helpers';
+import { hasBlocksData } from '@plone/volto/helpers';
+import RenderBlocks  from './RenderBlocks';
 
 const richTextHasContent = (data) => {
   if (hasBlocksData(data)) {
@@ -38,12 +38,17 @@ const richTextHasContent = (data) => {
  * @params {object} content: Content object.
  * @returns {string} Markup of the component.
  */
-const RichTextRender = ({ data, add_class, content }) => {
+const RichTextRender = ({
+  data,
+  add_class,
+  content,
+}) => {
   let hasContent = richTextHasContent(data);
 
   return hasContent ? (
     hasBlocksData(data) ? (
-      <div className={`richtext-blocks ${add_class ?? ''}`}>
+      <div
+        className={`richtext-blocks ${add_class ?? ''}`}>
         <RenderBlocks data={data} content={content} />
       </div>
     ) : (

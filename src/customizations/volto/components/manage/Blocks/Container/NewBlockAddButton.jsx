@@ -5,9 +5,8 @@ CUSTOMIZATIONS:
 import React from 'react';
 import { Button, Ref } from 'semantic-ui-react';
 import { defineMessages, useIntl } from 'react-intl';
-import BlockChooser from '@plone/volto/components/manage/BlockChooser/BlockChooser';
-import Icon from '@plone/volto/components/theme/Icon/Icon';
-import { useDetectClickOutside } from '@plone/volto/helpers/Utils/useDetectClickOutside';
+import { BlockChooser, Icon } from '@plone/volto/components';
+import { useDetectClickOutside } from '@plone/volto/helpers';
 import addSVG from '@plone/volto/icons/add.svg';
 import { usePopper } from 'react-popper';
 import { Portal } from 'react-portal';
@@ -64,6 +63,7 @@ const NewBlockAddButton = (props) => {
           aria-label={intl.formatMessage(messages.addBlock, {
             index,
           })}
+          type="button"
         >
           <Icon name={addSVG} className="circled" size="24px" />
         </Button>

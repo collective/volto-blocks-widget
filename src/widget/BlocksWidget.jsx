@@ -1,13 +1,12 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Portal } from 'react-portal';
 import { v4 as uuid } from 'uuid';
-import { isEmpty } from 'lodash';
+import isEmpty from 'lodash/isEmpty';
+import pick from 'lodash/pick';
 import { Form as UIForm } from 'semantic-ui-react';
 import { createPortal } from 'react-dom';
-import Sidebar from '@plone/volto/components/manage/Sidebar/Sidebar';
-import { Form } from '@plone/volto/components/manage/Form';
-import FormFieldWrapper from '@plone/volto/components/manage/Widgets/FormFieldWrapper';
+import { FormFieldWrapper, Form, Sidebar } from '@plone/volto/components';
 import { setBlockWidgetSelected } from '../actions';
 import config from '@plone/volto/registry';
 import { useLocation } from 'react-router-dom';
@@ -21,8 +20,6 @@ const BlocksWidget = (props) => {
   const currentFieldSelected = useSelector(
     (state) => state.blocksWidgetSelected?.value,
   );
-
-  const widgetRef = useRef();
   //const intl = useIntl();
   const defaultBlockId = uuid();
   if (!value.blocks_layout || isEmpty(value.blocks_layout.items)) {
@@ -38,12 +35,22 @@ const BlocksWidget = (props) => {
     };
   }
 
-  const onChangeBlocks = (data) => {
-    onChange(id, {
-      blocks: data.blocks,
-      blocks_layout: data.blocks_layout,
-    });
-  };
+  const onChangeBlocks = useCallback(
+    (data) => {
+      // Watch out: triple bug here.
+      // 1- malformed data from Form when deleting last/only block left in widget
+      // 2- cannot delete last/only block left in widget
+      // 3- pressing enter trying to add a new block when focus is in a block like
+      // Image will open filesystem explorer
+      // Wont fix now as scope is now to make it work again with volto 17
+      const realData = pick(data, ['blocks', 'blocks_layout']);
+      onChange(id, {
+        blocks: realData.blocks,
+        blocks_layout: realData.blocks_layout,
+      });
+    },
+    [id],
+  );
 
   const onFocusWidget = () => {
     if (currentFieldSelected !== id) {
@@ -51,23 +58,18 @@ const BlocksWidget = (props) => {
     }
   };
 
-  const onBlurWidget = () => {
+  const onBlurWidget = useCallback(() => {
     props.onBlur(id, value);
-  };
+  }, [value]);
 
-  useEffect(() => {
-    if (widgetRef) {
-      const currentWidget = widgetRef.current;
-      currentWidget.addEventListener('click', onFocusWidget);
-
-      return () => {
-        currentWidget.removeEventListener('click', onFocusWidget);
-      };
-    }
-  }, [widgetRef]);
   return (
     <>
-      <div className="blocks-widget" ref={widgetRef} onBlur={onBlurWidget}>
+      <div
+        className="blocks-widget"
+        onBlur={onBlurWidget}
+        onClick={onFocusWidget}
+        onFocus={onFocusWidget}
+      >
         <UIForm.Field inline id={id}>
           <FormFieldWrapper {...props}>
             <div className="blocks-widget-container">
@@ -93,15 +95,9 @@ const BlocksWidget = (props) => {
         </UIForm.Field>
       </div>
 
-      {createPortal(
-        <div
-          style={{ display: currentFieldSelected === id ? 'block' : 'none' }}
-        >
-          {' '}
-          <Sidebar />
-        </div>,
-        document.getElementById('sidebar'),
-      )}
+      <Portal node={document.getElementById('sidebar')}>
+        {currentFieldSelected === id && <Sidebar />}
+      </Portal>
     </>
   );
 };
