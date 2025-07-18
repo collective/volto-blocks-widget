@@ -78,7 +78,7 @@ const BlocksWidget = (props) => {
                 hideActions
                 onChangeFormData={onChangeBlocks}
                 allowedBlocks={
-                  props.allowedBlocks ??
+                  props?.widgetOptions?.allowedBlocks ??
                   config.settings['volto-blocks-widget']?.allowedBlocks
                 }
                 showRestricted={
