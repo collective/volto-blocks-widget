@@ -6,7 +6,7 @@ import { isEmpty } from 'lodash';
 import { Form as UIForm } from 'semantic-ui-react';
 import { createPortal } from 'react-dom';
 import Sidebar from '@plone/volto/components/manage/Sidebar/Sidebar';
-import { Form } from '@plone/volto/components/manage/Form';
+import Form from '@plone/volto/components/manage/Form/Form';
 import FormFieldWrapper from '@plone/volto/components/manage/Widgets/FormFieldWrapper';
 import { setBlockWidgetSelected } from '../actions';
 import config from '@plone/volto/registry';
