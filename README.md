@@ -17,7 +17,9 @@ This is a widget for fields that have the widget set to 'blocks'.
 Default allowed blocks are:
 Text, Video, HTML, Table
 
-but you could customize your allowed blocks by adding this configuration to your config.js:
+but you could customize your allowed blocks by adding this configuration to your config.js.
+
+If your project runs on Volto < 18.0.0, please set the prop `voltoVersion` into `config.settings['volto-blocks-widget'].voltoVersion`:
 
 ```jsx
 export const settings = {
@@ -25,6 +27,7 @@ export const settings = {
     'volto-blocks-widget' = {
     allowedBlocks: ['text', 'video', 'html', 'table'],
     showRestricted: false,
+    //voltoVersion: "17"
   },
 };
 ```

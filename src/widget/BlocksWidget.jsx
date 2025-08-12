@@ -12,11 +12,17 @@ import { setBlockWidgetSelected } from '../actions';
 import config from '@plone/volto/registry';
 import { useLocation } from 'react-router-dom';
 
+//import voltoPackage from '@plone/volto/package.json';
+
 import './blocks_widget.css';
 
 const BlocksWidget = (props) => {
   const location = useLocation();
   const dispatch = useDispatch();
+
+  const voltoVersion = config.settings['volto-blocks-widget'].voltoVersion + '';
+  const volto18 = voltoVersion.split('.')[0] === '18';
+
   const { value = {}, id, onChange, required } = props;
   const currentFieldSelected = useSelector(
     (state) => state.blocksWidgetSelected?.value,
@@ -93,14 +99,24 @@ const BlocksWidget = (props) => {
         </UIForm.Field>
       </div>
 
-      {createPortal(
-        <div
-          style={{ display: currentFieldSelected === id ? 'block' : 'none' }}
-        >
-          {' '}
-          <Sidebar />
-        </div>,
-        document.getElementById('sidebar'),
+      {volto18 ? (
+        <>
+          {createPortal(
+            <div
+              style={{
+                display: currentFieldSelected === id ? 'block' : 'none',
+              }}
+            >
+              {' '}
+              <Sidebar />
+            </div>,
+            document.getElementById('sidebar'),
+          )}
+        </>
+      ) : (
+        <Portal node={document.getElementById('sidebar')}>
+          {currentFieldSelected === id && <Sidebar />}
+        </Portal>
       )}
     </>
   );

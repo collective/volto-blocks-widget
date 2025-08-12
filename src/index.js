@@ -19,6 +19,7 @@ export default (config) => {
   config.settings['volto-blocks-widget'] = {
     allowedBlocks: [textBlock, 'image', 'video', 'html', 'table', 'maps'],
     showRestricted: false,
+    //voltoVersion: '17',
   };
 
   config.addonReducers = {
