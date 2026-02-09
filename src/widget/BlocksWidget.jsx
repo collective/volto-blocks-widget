@@ -27,6 +27,11 @@ const BlocksWidget = (props) => {
   const currentFieldSelected = useSelector(
     (state) => state.blocksWidgetSelected?.value,
   );
+  const currentFieldSelectedRef = useRef(currentFieldSelected);
+  useEffect(() => {
+    // tieni la ref sempre aggiornata
+    currentFieldSelectedRef.current = currentFieldSelected;
+  }, [currentFieldSelected]);
 
   const widgetRef = useRef();
   //const intl = useIntl();
@@ -52,7 +57,7 @@ const BlocksWidget = (props) => {
   };
 
   const onFocusWidget = () => {
-    if (currentFieldSelected !== id) {
+    if (currentFieldSelectedRef.current !== id) {
       dispatch(setBlockWidgetSelected(id));
     }
   };
@@ -107,7 +112,6 @@ const BlocksWidget = (props) => {
                 display: currentFieldSelected === id ? 'block' : 'none',
               }}
             >
-              {' '}
               <Sidebar />
             </div>,
             document.getElementById('sidebar'),
