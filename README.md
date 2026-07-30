@@ -19,15 +19,14 @@ Text, Video, HTML, Table
 
 but you could customize your allowed blocks by adding this configuration to your config.js.
 
-If your project runs on Volto < 18.0.0, please set the prop `voltoVersion` into `config.settings['volto-blocks-widget'].voltoVersion`:
-
 ```jsx
 export const settings = {
   ...config.settings,
     'volto-blocks-widget' = {
     allowedBlocks: ['text', 'video', 'html', 'table'],
     showRestricted: false,
-    //voltoVersion: "17"
   },
 };
 ```
+
+The Sidebar rendering strategy (`react-portal` vs native `createPortal`) is chosen automatically based on the installed `@plone/volto` version, no configuration needed.
