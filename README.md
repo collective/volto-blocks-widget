@@ -2,6 +2,8 @@
 
 Volto addon to use blocks inside fields
 
+> Note: this repository contains the frontend (Volto) widget only. If you are using the server-side field package (collective.volto.blocksfield) you must also install this frontend package in your Volto project. See the backend package and its documentation here: https://github.com/collective/collective.volto.blocksfield
+
 To be used with mrs-developer, see [Volto docs](https://docs.voltocms.com/customizing/add-ons/) for further usage informations.
 
 Created with [voltocli](https://github.com/nzambello/voltocli).
