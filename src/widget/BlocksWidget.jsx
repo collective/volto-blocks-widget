@@ -21,7 +21,7 @@ const BlocksWidget = (props) => {
   const dispatch = useDispatch();
 
   const voltoVersion = config.settings['volto-blocks-widget'].voltoVersion + '';
-  const volto18 = voltoVersion.split('.')[0] === '18';
+  const isVoltoVersionAtLeast18 = parseInt(voltoVersion.split('.')[0]) >= 18;
 
   const { value = {}, id, onChange, required } = props;
   const currentFieldSelected = useSelector(
@@ -104,7 +104,7 @@ const BlocksWidget = (props) => {
         </UIForm.Field>
       </div>
 
-      {volto18 ? (
+      {isVoltoVersionAtLeast18 ? (
         <>
           {createPortal(
             <div
