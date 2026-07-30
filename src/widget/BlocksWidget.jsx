@@ -21,7 +21,8 @@ const BlocksWidget = (props) => {
   const dispatch = useDispatch();
 
   const voltoVersion = config.settings['volto-blocks-widget'].voltoVersion + '';
-  const isVoltoVersionAtLeast18 = parseInt(voltoVersion.split('.')[0]) >= 18;
+  const majorVersion = parseInt(voltoVersion.split('.')[0]);
+  const isVoltoVersionAtLeast18 = !isNaN(majorVersion) && majorVersion >= 18;
 
   const { value = {}, id, onChange, required } = props;
   const currentFieldSelected = useSelector(
