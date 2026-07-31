@@ -11,17 +11,16 @@ import FormFieldWrapper from '@plone/volto/components/manage/Widgets/FormFieldWr
 import { setBlockWidgetSelected } from '../actions';
 import config from '@plone/volto/registry';
 import { useLocation } from 'react-router-dom';
-
-//import voltoPackage from '@plone/volto/package.json';
+import voltoPackage from '@plone/volto/package.json';
 
 import './blocks_widget.css';
+
+const isVoltoVersionAtLeast18 =
+  parseInt(voltoPackage.version.split('.')[0], 10) >= 18;
 
 const BlocksWidget = (props) => {
   const location = useLocation();
   const dispatch = useDispatch();
-
-  const voltoVersion = config.settings['volto-blocks-widget'].voltoVersion + '';
-  const volto18 = voltoVersion.split('.')[0] === '18';
 
   const { value = {}, id, onChange, required } = props;
   const currentFieldSelected = useSelector(
@@ -104,7 +103,7 @@ const BlocksWidget = (props) => {
         </UIForm.Field>
       </div>
 
-      {volto18 ? (
+      {isVoltoVersionAtLeast18 ? (
         <>
           {createPortal(
             <div
