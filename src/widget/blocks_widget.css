@@ -2,6 +2,10 @@
   padding: 0 2em;
 }
 
+.form .blocks-widget-container .slot-wrapper{
+  display: none;
+}
+
 body.cms-ui.has-toolbar.has-sidebar .blocks-widget-container > .ui.container {
   width: unset !important;
 }
