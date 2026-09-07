@@ -1,3 +1,19 @@
+
+
+### [3.4.9](https://github.com/collective/volto-blocks-widget/compare/v3.4.7...v3.4.9) (2026-09-07)
+
+
+### Bug Fixes
+
+* hide slots inside blocks widget ([#15](https://github.com/collective/volto-blocks-widget/issues/15)) ([7294308](https://github.com/collective/volto-blocks-widget/commit/72943085136976c3eba9e2c2edb0171fd852bb9d))
+* onfocuswidget ([12dda0e](https://github.com/collective/volto-blocks-widget/commit/12dda0e1fc714c9abe1d9843004feb8b6ea8d450))
+* volto version check at least 18 ([#12](https://github.com/collective/volto-blocks-widget/issues/12)) ([29afd62](https://github.com/collective/volto-blocks-widget/commit/29afd624239ae5f9323d275c0d627d1e1674bf3e))
+
+
+### Maintenance
+
+* updated scripts for ci release ([b63094b](https://github.com/collective/volto-blocks-widget/commit/b63094bdb537dd75d1ef715a1063fb03f7211abc))
+
 ### Changelog
 
 All notable changes to this project will be documented in this file. Dates are displayed in UTC.
