@@ -1,5 +1,12 @@
 
 
+### [3.4.10](https://github.com/collective/volto-blocks-widget/compare/v3.4.9...v3.4.10) (2026-09-07)
+
+
+### Maintenance
+
+* changed namespace ([496d2da](https://github.com/collective/volto-blocks-widget/commit/496d2da38f478e2b474f1014d0915c4cd70427ed))
+
 ### [3.4.9](https://github.com/collective/volto-blocks-widget/compare/v3.4.7...v3.4.9) (2026-09-07)
 
 
