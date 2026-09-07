@@ -1,17 +1,67 @@
 {
   "git": {
-    "changelog": "npx auto-changelog --stdout --commit-limit false -u --template https://raw.githubusercontent.com/release-it/release-it/master/templates/changelog-compact.hbs",
+    "commitMessage": "chore: release v${version}",
     "tagName": "v${version}"
   },
   "github": {
     "release": true,
-    "releaseName": "${version}",
-    "releaseNotes": "npx auto-changelog --stdout --commit-limit false -u --template https://raw.githubusercontent.com/release-it/release-it/master/templates/changelog-compact.hbs"
+    "releaseName": "${version}"
   },
-  "hooks": {
-    "after:bump": "npx auto-changelog --commit-limit false -p"
+  "plugins": {
+    "@release-it/conventional-changelog": {
+      "infile": "CHANGELOG.md",
+      "preset": {
+        "name": "conventionalcommits",
+        "types": [
+          {
+            "type": "feat",
+            "section": "Features"
+          },
+          {
+            "type": "fix",
+            "section": "Bug Fixes"
+          },
+          {
+            "type": "refactor",
+            "section": "Changes"
+          },
+          {
+            "type": "chore",
+            "section": "Maintenance"
+          },
+          {
+            "type": "ci",
+            "section": "Maintenance"
+          },
+          {
+            "type": "perf",
+            "section": "Maintenance"
+          },
+          {
+            "type": "build",
+            "section": "Maintenance"
+          },
+          {
+            "type": "style",
+            "section": "Maintenance"
+          },
+          {
+            "type": "revert",
+            "section": "Bug Fixes"
+          },
+          {
+            "type": "test",
+            "section": "Maintenance"
+          },
+          {
+            "type": "docs",
+            "section": "Documentation"
+          }
+        ]
+      }
+    }
   },
   "npm": {
-    "publish": true
+    "publish": false
   }
 }
