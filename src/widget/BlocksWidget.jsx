@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Portal } from 'react-portal';
 import { v4 as uuid } from 'uuid';
-import { isEmpty } from 'lodash';
+import { isEmpty } from 'lodash/isEmpty';
 import { Form as UIForm } from 'semantic-ui-react';
 import { createPortal } from 'react-dom';
 import Sidebar from '@plone/volto/components/manage/Sidebar/Sidebar';
