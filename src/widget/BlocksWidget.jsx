@@ -11,12 +11,18 @@ import FormFieldWrapper from '@plone/volto/components/manage/Widgets/FormFieldWr
 import { setBlockWidgetSelected } from '../actions';
 import config from '@plone/volto/registry';
 import { useLocation } from 'react-router-dom';
-import voltoPackage from '@plone/volto/package.json';
 
 import './blocks_widget.css';
 
-const isVoltoVersionAtLeast18 =
-  parseInt(voltoPackage.version.split('.')[0], 10) >= 18;
+// Volto's major version tracks React's major version (Volto 18 shipped on
+// React 18, Volto 17 on React 17, etc.), so React.version is used as a
+// stand-in for the Volto version. @plone/volto/package.json is not a
+// reliable source here: Volto may be resolved from npm or, in development,
+// symlinked in from its checked-out source via mrs.developer, and the
+// package.json path isn't guaranteed to be reachable in both cases. React
+// is always a real, deduplicated dependency of the app instead.
+const isReactVersionAtLeast18 =
+  parseInt(React.version.split('.')[0], 10) >= 18;
 
 const BlocksWidget = (props) => {
   const location = useLocation();
@@ -103,7 +109,7 @@ const BlocksWidget = (props) => {
         </UIForm.Field>
       </div>
 
-      {isVoltoVersionAtLeast18 ? (
+      {isReactVersionAtLeast18 ? (
         <>
           {createPortal(
             <div
