@@ -1,5 +1,14 @@
 
 
+### [3.4.11](https://github.com/collective/volto-blocks-widget/compare/v3.4.10...v3.4.11) (2026-09-22)
+
+
+### Bug Fixes
+
+* detect React major version instead of reading Volto's package.json ([#16](https://github.com/collective/volto-blocks-widget/issues/16)) ([af3dec2](https://github.com/collective/volto-blocks-widget/commit/af3dec2574d895ae3c74617b10c93bc1e8db1f4b))
+* import isEmpty as a default import from lodash/isEmpty ([#17](https://github.com/collective/volto-blocks-widget/issues/17)) ([d8e34d1](https://github.com/collective/volto-blocks-widget/commit/d8e34d1ba0c3e2fe655d86400777feff63335123))
+* import isEmpty from lodash ([bfc9f95](https://github.com/collective/volto-blocks-widget/commit/bfc9f95af5294d1995ab956010183e1e6d447d5b))
+
 ### [3.4.10](https://github.com/collective/volto-blocks-widget/compare/v3.4.9...v3.4.10) (2026-09-07)
 
 
