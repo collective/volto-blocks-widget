@@ -1,8 +1,9 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Portal } from 'react-portal';
 import { v4 as uuid } from 'uuid';
-import isEmpty from 'lodash/isEmpty';
+import isEqual from 'lodash/isEqual';
+import pick from 'lodash/pick';
 import { Form as UIForm } from 'semantic-ui-react';
 import { createPortal } from 'react-dom';
 import Sidebar from '@plone/volto/components/manage/Sidebar/Sidebar';
@@ -24,6 +25,30 @@ import './blocks_widget.css';
 const isReactVersionAtLeast18 =
   parseInt(React.version.split('.')[0], 10) >= 18;
 
+/**
+ * Keeps blocks and blocks_layout in sync and adds a default block if none are left, the input is never mutated.
+ */
+const normalizeBlocksData = (data, defaultBlockId) => {
+  const blocks = data?.blocks ?? {};
+  const items = (data?.blocks_layout?.items ?? []).filter((blockId) =>
+    Boolean(blocks[blockId]),
+  );
+
+  if (items.length === 0) {
+    return {
+      blocks: {
+        [defaultBlockId]: { '@type': config.settings.defaultBlockType },
+      },
+      blocks_layout: { items: [defaultBlockId] },
+    };
+  }
+
+  return {
+    blocks: pick(blocks, items),
+    blocks_layout: { ...data.blocks_layout, items },
+  };
+};
+
 const BlocksWidget = (props) => {
   const location = useLocation();
   const dispatch = useDispatch();
@@ -40,25 +65,23 @@ const BlocksWidget = (props) => {
 
   const widgetRef = useRef();
   //const intl = useIntl();
-  const defaultBlockId = uuid();
-  if (!value.blocks_layout || isEmpty(value.blocks_layout.items)) {
-    value.blocks_layout = {
-      items: [defaultBlockId],
-    };
-  }
-  if (!value.blocks || isEmpty(value.blocks)) {
-    value.blocks = {
-      [defaultBlockId]: {
-        '@type': config.settings.defaultBlockType,
-      },
-    };
-  }
+
+  const defaultBlockIdRef = useRef(uuid());
+  const formValue = useMemo(
+    () => normalizeBlocksData(value, defaultBlockIdRef.current),
+    [value],
+  );
+
+  const [formKey, setFormKey] = useState(0);
 
   const onChangeBlocks = (data) => {
-    onChange(id, {
-      blocks: data.blocks,
-      blocks_layout: data.blocks_layout,
-    });
+    const normalized = normalizeBlocksData(data, uuid());
+    if (
+      !isEqual(normalized.blocks_layout.items, data?.blocks_layout?.items ?? [])
+    ) {
+      setFormKey((k) => k + 1);
+    }
+    onChange(id, normalized);
   };
 
   const onFocusWidget = () => {
@@ -88,8 +111,8 @@ const BlocksWidget = (props) => {
           <FormFieldWrapper {...props}>
             <div className="blocks-widget-container">
               <Form
-                key={id}
-                formData={value}
+                key={`${id}-${formKey}`}
+                formData={formValue}
                 visual={true}
                 hideActions
                 onChangeFormData={onChangeBlocks}
