@@ -1,5 +1,12 @@
 
 
+### [3.4.12](https://github.com/collective/volto-blocks-widget/compare/v3.4.11...v3.4.12) (2026-11-25)
+
+
+### Bug Fixes
+
+* keep blocks and blocks_layout in sync when deleting the last block ([#18](https://github.com/collective/volto-blocks-widget/issues/18)) ([84904be](https://github.com/collective/volto-blocks-widget/commit/84904bed97bb82a2e3847d87d31119ffce0e518c))
+
 ### [3.4.11](https://github.com/collective/volto-blocks-widget/compare/v3.4.10...v3.4.11) (2026-09-22)
 
 
